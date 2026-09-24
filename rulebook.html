@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Generation Competition - Rulebook Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4f8',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1b365d',
+                        }
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(24px) scale(0.98)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-6px)' }
+                        },
+                        glowPulse: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(59, 130, 246, 0.2)' },
+                            '50%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.5)' }
+                        }
+                    },
+                    animation: {
+                        fadeInUp: 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        shimmer: 'shimmer 3s linear infinite',
+                        float: 'float 4s ease-in-out infinite',
+                        glowPulse: 'glowPulse 3s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-500 min-h-screen flex flex-col font-sans selection:bg-brand-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/70 dark:bg-slate-950/70 border-b border-slate-200 dark:border-slate-800/80 px-6 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3 group cursor-pointer">
+                <div class="p-2.5 bg-gradient-to-br from-brand-600 to-brand-900 text-white rounded-xl shadow-lg shadow-brand-500/20 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
+                    <i data-lucide="palette" class="w-6 h-6 animate-float"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-300 dark:to-purple-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
+                        Poster Gen Portal
+                    </span>
+                    <p class="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">SES Polytechnic Solapur</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 hover:scale-110 hover:border-brand-500/50 transition-all duration-300 text-slate-700 dark:text-slate-300 hover:shadow-lg">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="max-w-7xl mx-auto px-6 py-8 flex-1 flex flex-col lg:flex-row gap-8 w-full">
+
+        <!-- Sidebar Navigation -->
+        <aside class="w-full lg:w-64 flex-shrink-0 animate-fadeInUp">
+            <div class="sticky top-24 space-y-4">
+                <div class="p-4 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl">
+                    <h3 class="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3 px-2">Navigation</h3>
+                    <nav class="space-y-1.5">
+                        <a href="#general" class="nav-link active flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all duration-300 bg-gradient-to-r from-brand-600 to-indigo-600 text-white shadow-lg shadow-brand-500/20 hover:translate-x-1">
+                            <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                            <span>1. General Rules</span>
+                        </a>
+                        <a href="#rounds" class="nav-link flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all duration-300 hover:translate-x-1">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            <span>2. Competition Process</span>
+                        </a>
+                        <a href="#judging" class="nav-link flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all duration-300 hover:translate-x-1">
+                            <i data-lucide="scale" class="w-4 h-4"></i>
+                            <span>3. Judging Criteria</span>
+                        </a>
+                        <a href="#rewards" class="nav-link flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all duration-300 hover:translate-x-1">
+                            <i data-lucide="gift" class="w-4 h-4"></i>
+                            <span>4. Snacks & Prizes</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Feed Area -->
+        <main class="flex-1 space-y-6 min-w-0">
+
+            <div id="rulesContainer" class="space-y-6">
+
+                <!-- Section 1: General Rules -->
+                <section id="general" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 rounded-xl border border-red-200 dark:border-red-800/50">
+                            <i data-lucide="smartphone-off" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">1. General Rules & Regulations</h2>
+                    </div>
+                    <ul class="space-y-3.5 text-sm text-slate-700 dark:text-slate-300">
+                        <li class="flex items-start space-x-3 group">
+                            <i data-lucide="ban" class="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></i>
+                            <span><strong>No External Electronic Devices:</strong> Mobile phones, smartwatches, tablets, USB drives, or secondary laptops are strictly prohibited inside the competition arena.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 group">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500 dark:text-emerald-400 mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></i>
+                            <span><strong>Attendance & Registration:</strong> All participants must report to their assigned workstations 15 minutes before the start time for attendance verification.</span>
+                        </li>
+                        <li class="flex items-start space-x-3 group">
+                            <i data-lucide="shield-alert" class="w-4 h-4 text-amber-500 dark:text-amber-400 mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></i>
+                            <span><strong>Fair Play:</strong> Any form of communication between participants, prompt-copying, or unauthorized internet browsing results in immediate disqualification.</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section 2: Competition Rounds & Qualification -->
+                <section id="rounds" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-xl border border-indigo-200 dark:border-indigo-800/50">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">2. Competition Format & Rounds</h2>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:border-brand-500/50 hover:bg-slate-100 dark:hover:bg-slate-950/60">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i data-lucide="pen-tool" class="w-4 h-4 text-brand-600 dark:text-brand-400"></i>
+                                <h3 class="font-bold text-sm text-brand-600 dark:text-brand-400">Round 1: Preliminary Generation & Qualification</h3>
+                            </div>
+                            <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-1.5 mb-2">
+                                <li>• <strong>Written Phase (5 Minutes):</strong> Write your detailed image prompt on paper based on the provided theme.</li>
+                                <li>• <strong>Typing & Rendering Phase (5 Minutes):</strong> Input your written prompt into the designated AI poster generator to render your entry.</li>
+                            </ul>
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200 dark:border-slate-800/80">
+                                <i data-lucide="trophy" class="w-4 h-4 animate-bounce"></i>
+                                <span>Qualifying Criteria: Top-scoring entries advance based on visual appeal, theme alignment, and composition.</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:border-purple-500/50 hover:bg-slate-100 dark:hover:bg-slate-950/60">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i data-lucide="wand-2" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
+                                <h3 class="font-bold text-sm text-purple-600 dark:text-purple-400">Round 2: Final Advanced Challenge</h3>
+                            </div>
+                            <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-1.5">
+                                <li>• <strong>Written Refinement Phase (5 Minutes):</strong> Plan a multi-concept prompt scenario on paper.</li>
+                                <li>• <strong>Typing & Rendering Phase (5 Minutes):</strong> Generate your final entry in the rendering engine.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Submission & Judging Criteria -->
+                <section id="judging" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 rounded-xl border border-purple-200 dark:border-purple-800/50">
+                            <i data-lucide="scale" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">3. Submission & Judging Criteria</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-brand-500/40">
+                            <div class="flex items-center space-x-2 mb-1.5 text-brand-600 dark:text-brand-400">
+                                <i data-lucide="target" class="w-4 h-4"></i>
+                                <h3 class="font-bold text-sm">1. Relevance to Theme</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">How accurately the generated poster reflects the given competition topic.</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-indigo-500/40">
+                            <div class="flex items-center space-x-2 mb-1.5 text-indigo-600 dark:text-indigo-400">
+                                <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                                <h3 class="font-bold text-sm">2. Creativity & Originality</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">Unique artistic direction, creative prompt styling, and original concept execution.</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-emerald-500/40">
+                            <div class="flex items-center space-x-2 mb-1.5 text-emerald-600 dark:text-emerald-400">
+                                <i data-lucide="image" class="w-4 h-4"></i>
+                                <h3 class="font-bold text-sm">3. Visual Quality & Composition</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">Balance of visual elements, color harmony, text legibility, and rendering precision.</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-amber-500/40">
+                            <div class="flex items-center space-x-2 mb-1.5 text-amber-600 dark:text-amber-400">
+                                <i data-lucide="cpu" class="w-4 h-4"></i>
+                                <h3 class="font-bold text-sm">4. Prompt Efficiency</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">How effectively the written text guides the AI engine without parameter clutter.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Refreshments & Prizes -->
+                <section id="rewards" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2.5 bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 rounded-xl border border-amber-200 dark:border-amber-800/50">
+                            <i data-lucide="gift" class="w-5 h-5"></i>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">4. Refreshments & Prize Distribution</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 transition-transform duration-300 hover:scale-[1.02]">
+                            <div class="flex items-center space-x-2 mb-2 text-amber-600 dark:text-amber-400">
+                                <i data-lucide="coffee" class="w-4 h-4"></i>
+                                <h3 class="font-bold text-sm">Snack Break</h3>
+                            </div>
+                            <p class="text-xs text-slate-700 dark:text-slate-300">
+                                Refreshments are provided immediately following Round 1 while preliminary scores are tallied.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/40 transition-transform duration-300 hover:scale-[1.02]">
+                            <div class="flex items-center space-x-2 mb-2 text-emerald-600 dark:text-emerald-400">
+                                <i data-lucide="award" class="w-4 h-4"></i>
+                                <h3 class="font-bold text-sm">Award Structure</h3>
+                            </div>
+                            <ul class="text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
+                                <li>• <strong>1st Place:</strong> Winner Trophy + Cash Prize</li>
+                                <li>• <strong>Runner-Up:</strong> Runner-Up Trophy</li>
+                                <li>• <strong>All Participants:</strong> Official Participation Certificate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Enhanced Footer Section with Animated Taglines -->
+    <footer class="mt-auto bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            
+            <!-- Dynamic Tagline Section -->
+            <div class="text-center md:text-left space-y-3">
+                <div class="flex items-center justify-center md:justify-start space-x-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-300 dark:to-purple-400 font-extrabold text-xl tracking-wide">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-brand-500 dark:text-brand-400 animate-spin"></i>
+                    <span>Think it. Prompt it. Design it.</span>
+                </div>
+                
+                <!-- Tagline Option Badges -->
+                <div class="flex flex-wrap justify-center md:justify-start gap-2 pt-1">
+                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 hover:border-brand-500/50 transition-all duration-300 cursor-pointer">
+                        💡 Imagine. Prompt. Create.
+                    </span>
+                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-500/50 transition-all duration-300 cursor-pointer">
+                        🎨 Words into Visual Art
+                    </span>
+                </div>
+
+                <p class="text-xs text-slate-500 dark:text-slate-500 max-w-md leading-relaxed pt-1">
+                    Thanks for visiting! Best of luck to all participants in transforming creative ideas into posters.
+                </p>
+            </div>
+
+            <!-- Venue Card -->
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800/80 text-xs text-slate-700 dark:text-slate-300 space-y-1.5 max-w-md w-full transition-all duration-300 hover:border-brand-500/40 shadow-lg">
+                <div class="flex items-center space-x-2 font-bold text-slate-900 dark:text-slate-100">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-brand-600 dark:text-brand-400 flex-shrink-0"></i>
+                    <span>Venue Location</span>
+                </div>
+                <p class="pl-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <strong>S.E.S. Polytechnic, Solapur</strong><br>
+                    46B, Solapur Bypass Rd, Samrat chowk, Budhavar Peth, Solapur, Maharashtra 413002
+
+
+                </p>
+            </div>
+
+        </div>
+        <div class="border-t border-slate-200 dark:border-slate-900 py-4 text-center text-xs text-slate-500">
+            © 2026 S.E.S. Polytechnic, Solapur. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Floating Chatbot Widget Button -->
+    <button id="chatToggle" class="fixed bottom-6 right-6 p-4 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white rounded-full shadow-2xl animate-glowPulse hover:scale-110 active:scale-95 transition-all duration-300 z-50 flex items-center justify-center">
+        <i data-lucide="bot" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Chatbot Window -->
+    <div id="chatWindow" class="fixed bottom-24 right-6 w-80 sm:w-96 bg-white/95 dark:bg-slate-900/90 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl flex flex-col hidden z-50 overflow-hidden h-[450px] transition-all duration-300 animate-fadeInUp">
+        
+        <!-- Chat Header -->
+        <div class="bg-gradient-to-r from-brand-800 to-indigo-900 dark:from-brand-900 dark:to-indigo-950 text-white px-4 py-3 flex items-center justify-between border-b border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="bot" class="w-5 h-5 text-brand-400"></i>
+                <span class="font-bold text-sm">Poster Gen Assistant</span>
+            </div>
+            <button id="chatClose" class="text-slate-300 hover:text-white transition-colors duration-200">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
+            <div class="bg-slate-100 dark:bg-slate-800/60 text-slate-800 dark:text-slate-200 p-3 rounded-xl max-w-[85%] self-start border border-slate-200 dark:border-slate-700/50">
+                Hey there! 👋 I'm your AI assistant. Feel free to ask me anything about the rules, or just say hi!
+            </div>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form id="chatForm" class="p-3 border-t border-slate-200 dark:border-slate-800 flex space-x-2 bg-slate-50/80 dark:bg-slate-950/80">
+            <input type="text" id="chatInput" placeholder="Ask or say hello..." required
+                class="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all duration-200">
+            <button type="submit" class="p-2 bg-brand-600 hover:bg-brand-500 text-white rounded-xl hover:scale-105 transition-all duration-200">
+                <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Switcher (Toggles 'dark' class on <html> element)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Active Navigation Highlight
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.forEach(l => {
+                    l.classList.remove('active', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'text-white', 'shadow-lg');
+                    l.classList.add('text-slate-600', 'dark:text-slate-400');
+                });
+                this.classList.add('active', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'text-white', 'shadow-lg');
+                this.classList.remove('text-slate-600', 'dark:text-slate-400');
+            });
+        });
+
+        // Chatbot Integration
+        const chatToggle = document.getElementById('chatToggle');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatClose = document.getElementById('chatClose');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatToggle.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
+        chatClose.addEventListener('click', () => chatWindow.classList.add('hidden'));
+
+        // Interactive Knowledge Base + Chit-Chat Capabilities
+        const conversationRules = [
+            // Casual Chit-Chat Greetings & Small Talk
+            { keywords: ['hi', 'hello', 'hey', 'greetings', 'sup', 'yo'], answers: ["Hello! Hope you're having an awesome day!", "Hey there! Ready to design some amazing posters?", "Hi! How can I help you today?"] },
+            { keywords: ['how are you', 'how r u', 'how are u', 'how do you do'], answers: ["I'm doing great, thanks for asking! Ready to assist you.", "Feeling energetic and ready to talk design! How are you doing?"] },
+            { keywords: ['who are you', 'your name', 'what are you'], answers: ["I'm the Poster Gen Assistant! I'm here to answer questions about the competition and keep you company."] },
+            { keywords: ['good morning'], answers: ["Good morning! Ready for a brilliant creative session? ☀️"] },
+            { keywords: ['good afternoon'], answers: ["Good afternoon! How is your day going so far? 🌤️"] },
+            { keywords: ['good evening'], answers: ["Good evening! Hope you've had a productive day! 🌙"] },
+            { keywords: ['bye', 'goodbye', 'see ya', 'cya'], answers: ["Goodbye! Best of luck in the competition! 🎨", "See you later! Have a great day!"] },
+            { keywords: ['thank', 'thanks', 'thx'], answers: ["You're very welcome! Always happy to help! 😊", "Anytime! Let me know if you need anything else."] },
+            { keywords: ['cool', 'awesome', 'nice', 'great'], answers: ["Glad you like it! Let me know if you have any other questions.", "Awesome! Feel free to ask about the competition rounds or prizes!"] },
+
+            // Competition Specific Query Responses
+            { keywords: ['address', 'location', 'where', 'venue', 'ses', 'solapur'], answers: ["The event is located at S.E.S. Polytechnic, Samarth Nagar, Vijapur Road, Solapur, Maharashtra 413004."] },
+            { keywords: ['device', 'mobile', 'phone', 'tablet', 'watch', 'electronic'], answers: ["No electronic devices (phones, smartwatches, etc.) are permitted inside the competition zone."] },
+            { keywords: ['round 1', 'first round'], answers: ["Round 1 consists of 5 minutes for written prompt preparation on paper, followed by 5 minutes for typing and rendering."] },
+            { keywords: ['round 2', 'second round'], answers: ["Round 2 features a 5-minute written refinement phase and a 5-minute final AI rendering phase."] },
+            { keywords: ['judging', 'criteria', 'evaluat', 'score'], answers: ["Entries are judged on Theme Relevance, Originality, Visual Quality, and Prompt Efficiency."] },
+            { keywords: ['snack', 'food', 'refreshment'], answers: ["Snacks and refreshments are served right after Round 1 while scores are being calculated! ☕"] },
+            { keywords: ['prize', 'award', 'trophy'], answers: ["1st Place wins a Trophy + Cash Prize; Runner-Up receives a Trophy; all participants get official certificates! 🏆"] }
+        ];
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userMsg = chatInput.value.trim();
+            if (!userMsg) return;
+
+            // Render User Message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'bg-brand-600 text-white p-3 rounded-xl max-w-[85%] self-end ml-auto animate-fadeInUp';
+            userDiv.textContent = userMsg;
+            chatMessages.appendChild(userDiv);
+
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Generate Chit-Chat Response
+            setTimeout(() => {
+                const lower = userMsg.toLowerCase();
+                let reply = "I'm not quite sure about that, but feel free to ask me about competition rules, schedules, venue location, or just say hello!";
+
+                for (let rule of conversationRules) {
+                    if (rule.keywords.some(k => lower.includes(k))) {
+                        // Select a random response variant for variety
+                        reply = rule.answers[Math.floor(Math.random() * rule.answers.length)];
+                        break;
+                    }
+                }
+
+                const botDiv = document.createElement('div');
+                botDiv.className = 'bg-slate-100 dark:bg-slate-800/60 text-slate-800 dark:text-slate-200 p-3 rounded-xl max-w-[85%] self-start animate-fadeInUp border border-slate-200 dark:border-slate-700/50';
+                botDiv.textContent = reply;
+                chatMessages.appendChild(botDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 250);
+        });
+    </script>
+</body>
+</html>
