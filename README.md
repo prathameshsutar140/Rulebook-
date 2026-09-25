@@ -38,4 +38,4 @@ An interactive, dark-mode enabled web portal and rulebook system built for the P
 ## 💻 How to Run
 
 1. Clone or download this repository.
-2. Open `rulebook.html` directly in any standard browser[span_15](start_span)[span_15](end_span). No node installation or local server required!
+2. Open `rulebook.html` directly in any standard browser. No node installation or local server required!
