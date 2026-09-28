@@ -1,356 +1,1191 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poster Generation Competition - Rulebook Portal</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f4f8',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            900: '#1b365d',
-                        }
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(24px) scale(0.98)' },
-                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-200% 0' },
-                            '100%': { backgroundPosition: '200% 0' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-6px)' }
-                        }
-                    },
-                    animation: {
-                        fadeInUp: 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        shimmer: 'shimmer 3s linear infinite',
-                        float: 'float 4s ease-in-out infinite'
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rulebook — PROMPT 2 POSTER</title>
+  
+  <!-- Modern Typography System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+
+  <style>
+:root {
+  --ivory: #F8F6F0;
+  --cream: #FFFFFF;
+  --ink: #111318;
+  --ink-light: #4A4E58;
+  --navy: #0F172A;
+  --burgundy: #7C1D32;
+  --beige: #EFE8DA;
+  --stone: #827E75;
+  --gold: #D4A373;
+  --pink-accent: #E2A0AC;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-neo: 5px 5px 0px var(--ink);
+  --shadow-neo-hover: 8px 8px 0px var(--ink);
+  --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--ivory);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ambient glow accents */
+.ambient-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.glow-1 {
+  top: -100px;
+  right: -100px;
+  background: rgba(124, 29, 50, 0.25);
+}
+
+.glow-2 {
+  top: 40%;
+  left: -150px;
+  background: rgba(212, 163, 115, 0.3);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* Typography utility classes */
+.mono {
+  font-family: 'Space Mono', monospace;
+}
+
+.label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.label-pink {
+  color: var(--pink-accent);
+}
+
+.text-stone {
+  color: var(--stone);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-ivory {
+  color: var(--ivory);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* --- CONTAINER FIXES --- */
+.container {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+}
+
+/* --- CENTERED SECTION LABEL --- */
+.section-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--burgundy);
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.section-label::before {
+  content: "";
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  margin-right: 0.75rem;
+}
+
+/* --- CENTERED SECTION HEADING --- */
+.section-heading {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(248, 246, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--ink);
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 68px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-badge {
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navbar-links a {
+  padding: 0.5rem 0.9rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  background: var(--cream);
+  border-color: var(--ink);
+  color: var(--burgundy);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+  padding: 4px;
+}
+
+.navbar-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  transition: all 0.3s ease;
+}
+
+.navbar-mobile {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 68px;
+  left: 0;
+  width: 100%;
+  background: var(--ivory);
+  border-bottom: 2px solid var(--ink);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-mobile a {
+  padding: 1.2rem 1.75rem;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.navbar-mobile.open {
+  display: flex;
+}
+
+/* Cards & Surfaces */
+.neo-card {
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-neo);
+  padding: 2rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neo-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-neo-hover);
+}
+
+.bg-navy {
+  background: var(--navy);
+  color: var(--ivory);
+}
+
+.bg-burgundy {
+  background: var(--burgundy);
+  color: var(--ivory);
+}
+
+.bg-beige-section {
+  background: var(--beige);
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+.bg-ink {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.bg-cream {
+  background: var(--cream);
+}
+
+.text-ink {
+  color: var(--ink);
+}
+
+/* Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.08s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.16s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.24s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.32s;
+}
+
+/* --- HERO SECTION CENTERED --- */
+.hero {
+  padding: 7.5rem 0 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Fixed Badge Alignment & Margin */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 50px;
+  background: var(--cream);
+  border: 1.5px solid var(--ink);
+  box-shadow: 2px 2px 0px var(--ink);
+  margin-bottom: 1.25rem;
+  margin-left: 0;
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  max-width: fit-content;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--burgundy);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(124, 29, 50, 0.7);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(124, 29, 50, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(124, 29, 50, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(124, 29, 50, 0);
+  }
+}
+
+/* Fluid, Responsive Title Scaling — CENTERED */
+.hero-title {
+  font-size: clamp(2.2rem, 7.5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  word-break: break-word;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-title .accent {
+  color: var(--burgundy);
+  font-style: italic;
+  display: inline-block;
+}
+
+/* Subtitle Wrap & Max Width — CENTERED */
+.hero-sub {
+  margin-top: 1.25rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 580px;
+  width: 100%;
+  font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+  color: var(--ink-light);
+  font-weight: 400;
+  line-height: 1.55;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+/* Hero Rule Alignment — CENTERED */
+.hero-rule {
+  height: 3px;
+  background: var(--ink);
+  width: 64px;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
+}
+
+/* Rules Section — CENTERED CONTAINER, LEFT-ALIGNED TEXT */
+.rule-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: left;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rule-row:last-child {
+  border-bottom: none;
+}
+
+.rule-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.icon-forbidden {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.icon-check {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.icon-alert {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.rule-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.rule-desc {
+  color: var(--ink-light);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+
+/* Rounds Grid — CENTERED */
+.round-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .round-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.round-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.round-num {
+  font-size: 2.5rem;
+  font-weight: 700;
+  opacity: 0.3;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.round-num.dark-num {
+  opacity: 0.5;
+  color: var(--ivory);
+}
+
+.stage-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  background: var(--ivory);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+}
+
+.stage-tag-burgundy {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--ivory);
+  border-color: var(--ivory);
+}
+
+.round-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.phase-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.phase-item {
+  background: rgba(0, 0, 0, 0.02);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--ink);
+}
+
+.bg-burgundy .phase-item {
+  background: rgba(255, 255, 255, 0.06);
+  border-left-color: var(--gold);
+}
+
+.phase-pill {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--ivory);
+  padding: 0.25rem 0.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+}
+
+.phase-pill-light {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.text-light {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.qualify-note {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.qualify-note-light {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Judging Grid — CENTERED */
+.judge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.judge-num {
+  font-size: 1.2rem;
+  color: var(--burgundy);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.judge-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Awards Grid — CENTERED */
+.award-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.award-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.award-tier {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trophy-badge {
+  font-size: 1.5rem;
+}
+
+.award-amount {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--burgundy);
+  margin: 0.5rem 0;
+}
+
+.award-extra {
+  font-weight: 600;
+  color: var(--ink-light);
+}
+
+.award-cert-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  line-height: 1.3;
+}
+
+/* Venue Card */
+.venue-card {
+  margin-top: 2rem;
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.venue-box {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.venue-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+.venue-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.venue-address {
+  color: rgba(245, 240, 232, 0.7);
+  font-size: 0.92rem;
+  margin-top: 0.3rem;
+}
+
+/* Footer */
+footer {
+  padding: 4rem 0 2.5rem;
+  text-align: center;
+  border-top: 2px solid var(--ink);
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.footer-subtitle {
+  opacity: 0.6;
+  margin-top: 0.3rem;
+}
+
+.footer-tagline {
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 1rem;
+  font-size: 1.05rem;
+}
+
+.footer-badges {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.footer-badges span {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.72rem;
+  font-family: 'Space Mono', monospace;
+  border-radius: 50px;
+}
+
+.footer-copyright {
+  opacity: 0.4;
+  font-size: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: var(--cream);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0px var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 900;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px var(--ink);
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+  .navbar-toggle {
+    display: flex;
+  }
+  .venue-box {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Mobile Adjustments (under 480px) */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 6rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 9vw, 2.5rem);
+    line-height: 1.1;
+  }
+
+  .navbar-inner {
+    padding: 0 1rem;
+  }
+  .video-section {
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.video-fullwidth {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+}
+  </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-500 min-h-screen flex flex-col font-sans selection:bg-brand-500 selection:text-white">
+<body>
 
-    <!-- Header / Navbar -->
-    <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/70 dark:bg-slate-950/70 border-b border-slate-200 dark:border-slate-800/80 px-6 py-4 transition-all duration-300">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3 group cursor-pointer">
-                <div class="p-2.5 bg-gradient-to-br from-brand-600 to-brand-900 text-white rounded-xl shadow-lg shadow-brand-500/20 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300">
-                    <!-- Open Book Icon -->
-                    <i data-lucide="book-open" class="w-6 h-6 animate-float"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-300 dark:to-purple-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
-                        Poster Gen Portal
-                    </span>
-                    <p class="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">SES Polytechnic Solapur</p>
-                </div>
-            </div>
+  <!-- Ambient Background Gradients -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
 
-            <div class="flex items-center space-x-4">
-                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 hover:scale-110 hover:border-brand-500/50 transition-all duration-300 text-slate-700 dark:text-slate-300 hover:shadow-lg">
-                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
-                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Container -->
-    <div class="max-w-7xl mx-auto px-6 py-8 flex-1 flex flex-col lg:flex-row gap-8 w-full">
-
-        <!-- Sidebar Navigation -->
-        <aside class="w-full lg:w-64 flex-shrink-0 animate-fadeInUp">
-            <div class="sticky top-24 space-y-4">
-                <div class="p-4 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl">
-                    <h3 class="text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3 px-2">Navigation</h3>
-                    <nav class="space-y-1.5">
-                        <a href="#general" class="nav-link active flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all duration-300 bg-gradient-to-r from-brand-600 to-indigo-600 text-white shadow-lg shadow-brand-500/20 hover:translate-x-1">
-                            <i data-lucide="shield-alert" class="w-4 h-4"></i>
-                            <span>1. General Rules</span>
-                        </a>
-                        <a href="#rounds" class="nav-link flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all duration-300 hover:translate-x-1">
-                            <i data-lucide="sparkles" class="w-4 h-4"></i>
-                            <span>2. Competition Process</span>
-                        </a>
-                        <a href="#judging" class="nav-link flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all duration-300 hover:translate-x-1">
-                            <i data-lucide="scale" class="w-4 h-4"></i>
-                            <span>3. Judging Criteria</span>
-                        </a>
-                        <a href="#rewards" class="nav-link flex items-center space-x-3 px-3 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all duration-300 hover:translate-x-1">
-                            <i data-lucide="gift" class="w-4 h-4"></i>
-                            <span>4. Prizes & Awards</span>
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Feed Area -->
-        <main class="flex-1 space-y-6 min-w-0">
-
-            <div id="rulesContainer" class="space-y-6">
-
-                <!-- Section 1: General Rules -->
-                <section id="general" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="p-2.5 bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 rounded-xl border border-red-200 dark:border-red-800/50">
-                            <i data-lucide="smartphone-off" class="w-5 h-5"></i>
-                        </div>
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">1. General Rules & Regulations</h2>
-                    </div>
-                    <ul class="space-y-3.5 text-sm text-slate-700 dark:text-slate-300">
-                        <li class="flex items-start space-x-3 group">
-                            <i data-lucide="ban" class="w-4 h-4 text-red-500 dark:text-red-400 mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></i>
-                            <span><strong>No External Electronic Devices:</strong> Mobile phones, smartwatches, tablets, USB drives, or secondary laptops are strictly prohibited inside the competition arena.</span>
-                        </li>
-                        <li class="flex items-start space-x-3 group">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500 dark:text-emerald-400 mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></i>
-                            <span><strong>Attendance & Registration:</strong> All participants must report to their assigned workstations 15 minutes before the start time for attendance verification.</span>
-                        </li>
-                        <li class="flex items-start space-x-3 group">
-                            <i data-lucide="shield-alert" class="w-4 h-4 text-amber-500 dark:text-amber-400 mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></i>
-                            <span><strong>Fair Play:</strong> Any form of communication between participants, prompt-copying, or unauthorized internet browsing results in immediate disqualification.</span>
-                        </li>
-                    </ul>
-                </section>
-
-                <!-- Section 2: Competition Rounds & Qualification -->
-                <section id="rounds" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="p-2.5 bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded-xl border border-indigo-200 dark:border-indigo-800/50">
-                            <i data-lucide="sparkles" class="w-5 h-5"></i>
-                        </div>
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">2. Competition Format & Rounds</h2>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:border-brand-500/50 hover:bg-slate-100 dark:hover:bg-slate-950/60">
-                            <div class="flex items-center space-x-2 mb-2">
-                                <i data-lucide="pen-tool" class="w-4 h-4 text-brand-600 dark:text-brand-400"></i>
-                                <h3 class="font-bold text-sm text-brand-600 dark:text-brand-400">Round 1: Preliminary Generation & Qualification</h3>
-                            </div>
-                            <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-2 mb-2">
-                                <li class="flex items-start space-x-2">
-                                    <i data-lucide="file-edit" class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 mt-0.5 flex-shrink-0"></i>
-                                    <span><strong>Written Phase (5 Minutes):</strong> Write your detailed image prompt on paper based on the provided theme.</span>
-                                </li>
-                                <li class="flex items-start space-x-2">
-                                    <i data-lucide="monitor" class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 mt-0.5 flex-shrink-0"></i>
-                                    <span><strong>Typing & Rendering Phase (5 Minutes):</strong> Input your written prompt into the designated AI poster generator to render your entry.</span>
-                                </li>
-                            </ul>
-                            <div class="flex items-center space-x-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 pt-2 border-t border-slate-200 dark:border-slate-800/80">
-                                <i data-lucide="trophy" class="w-4 h-4 animate-bounce"></i>
-                                <span>Qualifying Criteria: Top-scoring entries advance based on visual appeal, theme alignment, and composition.</span>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:border-purple-500/50 hover:bg-slate-100 dark:hover:bg-slate-950/60">
-                            <div class="flex items-center space-x-2 mb-2">
-                                <i data-lucide="wand-2" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
-                                <h3 class="font-bold text-sm text-purple-600 dark:text-purple-400">Round 2: Final Advanced Challenge</h3>
-                            </div>
-                            <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-2">
-                                <li class="flex items-start space-x-2">
-                                    <i data-lucide="file-edit" class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 mt-0.5 flex-shrink-0"></i>
-                                    <span><strong>Written Refinement Phase (5 Minutes):</strong> Plan a multi-concept prompt scenario on paper.</span>
-                                </li>
-                                <li class="flex items-start space-x-2">
-                                    <i data-lucide="monitor" class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 mt-0.5 flex-shrink-0"></i>
-                                    <span><strong>Typing & Rendering Phase (5 Minutes):</strong> Generate your final entry in the rendering engine.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 3: Submission & Judging Criteria -->
-                <section id="judging" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="p-2.5 bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 rounded-xl border border-purple-200 dark:border-purple-800/50">
-                            <i data-lucide="scale" class="w-5 h-5"></i>
-                        </div>
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">3. Submission & Judging Criteria</h2>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-brand-500/40">
-                            <div class="flex items-center space-x-2 mb-1.5 text-brand-600 dark:text-brand-400">
-                                <i data-lucide="target" class="w-4 h-4"></i>
-                                <h3 class="font-bold text-sm">1. Relevance to Theme</h3>
-                            </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400">How accurately the generated poster reflects the given competition topic.</p>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-indigo-500/40">
-                            <div class="flex items-center space-x-2 mb-1.5 text-indigo-600 dark:text-indigo-400">
-                                <i data-lucide="lightbulb" class="w-4 h-4"></i>
-                                <h3 class="font-bold text-sm">2. Creativity & Originality</h3>
-                            </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400">Unique artistic direction, creative prompt styling, and original concept execution.</p>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-emerald-500/40">
-                            <div class="flex items-center space-x-2 mb-1.5 text-emerald-600 dark:text-emerald-400">
-                                <i data-lucide="image" class="w-4 h-4"></i>
-                                <h3 class="font-bold text-sm">3. Visual Quality & Composition</h3>
-                            </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400">Balance of visual elements, color harmony, text legibility, and rendering precision.</p>
-                        </div>
-
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:scale-[1.02] hover:border-amber-500/40">
-                            <div class="flex items-center space-x-2 mb-1.5 text-amber-600 dark:text-amber-400">
-                                <i data-lucide="cpu" class="w-4 h-4"></i>
-                                <h3 class="font-bold text-sm">4. Prompt Efficiency</h3>
-                            </div>
-                            <p class="text-xs text-slate-600 dark:text-slate-400">How effectively the written text guides the AI engine without parameter clutter.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 4: Prizes & Awards (Updated based on image) -->
-                <section id="rewards" class="rule-card p-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-lg transition-all duration-500 hover:border-brand-500/40 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-1 animate-fadeInUp">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="p-2.5 bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 rounded-xl border border-amber-200 dark:border-amber-800/50">
-                            <i data-lucide="gift" class="w-5 h-5"></i>
-                        </div>
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">4. Prize Distribution & Recognition</h2>
-                    </div>
-
-                    <div class="p-5 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/40 transition-transform duration-300 hover:scale-[1.01]">
-                        <div class="flex items-center space-x-2 mb-3 text-emerald-600 dark:text-emerald-400">
-                            <i data-lucide="award" class="w-5 h-5"></i>
-                            <h3 class="font-bold text-base">Award Structure</h3>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-700 dark:text-slate-300">
-                            <!-- Winner -->
-                            <div class="flex items-center space-x-3 p-3.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700/50 shadow-sm">
-                                <div class="p-2 bg-amber-500/20 text-amber-600 dark:text-amber-400 rounded-lg">
-                                    <i data-lucide="trophy" class="w-6 h-6 flex-shrink-0"></i>
-                                </div>
-                                <div>
-                                    <p class="font-bold text-sm text-slate-900 dark:text-slate-100">WINNER</p>
-                                    <p class="text-base font-extrabold text-amber-600 dark:text-amber-400">₹ 750</p>
-                                    <p class="text-[11px] font-semibold text-slate-600 dark:text-slate-400">+ TROPHY</p>
-                                </div>
-                            </div>
-
-                            <!-- Runner Up -->
-                            <div class="flex items-center space-x-3 p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/30 border border-blue-300 dark:border-blue-700/50 shadow-sm">
-                                <div class="p-2 bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg">
-                                    <i data-lucide="medal" class="w-6 h-6 flex-shrink-0"></i>
-                                </div>
-                                <div>
-                                    <p class="font-bold text-sm text-slate-900 dark:text-slate-100">RUNNER UP</p>
-                                    <p class="text-base font-extrabold text-blue-600 dark:text-blue-400">₹ 500</p>
-                                    <p class="text-[11px] font-semibold text-slate-600 dark:text-slate-400">+ TROPHY</p>
-                                </div>
-                            </div>
-
-                            <!-- All Participants -->
-                            <div class="flex items-center space-x-3 p-3.5 rounded-xl bg-indigo-50/80 dark:bg-indigo-950/30 border border-indigo-300 dark:border-indigo-700/50 shadow-sm">
-                                <div class="p-2 bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 rounded-lg">
-                                    <i data-lucide="scroll" class="w-6 h-6 flex-shrink-0"></i>
-                                </div>
-                                <div>
-                                    <p class="font-bold text-sm text-slate-900 dark:text-slate-100">All Participants</p>
-                                    <p class="text-xs font-medium text-slate-600 dark:text-slate-300 mt-1">Official Participation Certificate</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-        </main>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="#top" class="navbar-logo">
+        <span class="logo-badge">P2P</span>
+        <span class="logo-text">RULEBOOK</span>
+      </a>
+      <div class="navbar-links">
+        <a href="#general" data-nav>General</a>
+        <a href="#rounds" data-nav>Rounds</a>
+        <a href="#judging" data-nav>Judging</a>
+        <a href="#awards" data-nav>Awards</a>
+      </div>
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+      </button>
     </div>
+    <div class="navbar-mobile" id="navMobile">
+      <a href="#general">General Rules</a>
+      <a href="#rounds">Competition Rounds</a>
+      <a href="#judging">Judging Criteria</a>
+      <a href="#awards">Prizes &amp; Venue</a>
+    </div>
+  </nav>
 
-    <!-- Enhanced Footer Section -->
-    <footer class="mt-auto bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-8">
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero container">
+      <div class="hero-badge reveal">
+        <span class="pulse-dot"></span>
+        <span class="mono">OFFICIAL RULEBOOK</span>
+      </div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        PROMPT <span class="accent">2</span> POSTER
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Everything participants need to know — rules, rounds, judging criteria and awards for the poster-generation challenge.
+      </p>
+      <div class="hero-rule reveal reveal-delay-3"></div>
+    </section>
+
+    <!-- General Regulations Section -->
+    <section id="general" class="section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="section-label label">01 — REGULATIONS</h2>
+          <h3 class="section-heading">General Rules &amp; Regulations</h3>
+        </div>
+        <div class="neo-card reveal">
+          <div class="rule-row">
+            <div class="rule-icon icon-forbidden">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+            <div>
+              <div class="rule-title">No External Electronic Devices</div>
+              <div class="rule-desc">Mobile phones, smartwatches, tablets, USB drives, or secondary laptops are strictly prohibited inside the competition arena.</div>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-icon icon-check">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div>
+              <div class="rule-title">Attendance &amp; Registration</div>
+              <div class="rule-desc">All participants must report to their assigned workstations 15 minutes before the start time for attendance verification.</div>
+            </div>
+          </div>
+          <div class="rule-row">
+            <div class="rule-icon icon-alert">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </div>
+            <div>
+              <div class="rule-title">Fair Play</div>
+              <div class="rule-desc">Any form of communication between participants, prompt-copying, or unauthorized internet browsing results in immediate disqualification.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rounds Section -->
+    <section id="rounds" class="section bg-beige-section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="section-label label">02 — FORMAT</h2>
+          <h3 class="section-heading">Competition Format &amp; Rounds</h3>
+        </div>
+        <div class="round-grid">
+          <div class="neo-card reveal reveal-delay-1">
+            <div class="round-header">
+              <span class="round-num">01</span>
+              <span class="stage-tag">STAGE 1</span>
+            </div>
+            <h4 class="round-title">Preliminary Generation &amp; Qualification</h4>
             
-            <!-- Dynamic Tagline Section -->
-            <div class="text-center md:text-left space-y-3">
-                <div class="flex items-center justify-center md:justify-start space-x-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-300 dark:to-purple-400 font-extrabold text-xl tracking-wide">
-                    <i data-lucide="sparkles" class="w-5 h-5 text-brand-500 dark:text-brand-400 animate-spin"></i>
-                    <span>Think it. Prompt it. Design it.</span>
-                </div>
-                
-                <!-- Tagline Option Badges -->
-                <div class="flex flex-wrap justify-center md:justify-start gap-2 pt-1">
-                    <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-brand-500 dark:hover:text-brand-400 hover:border-brand-500/50 transition-all duration-300 cursor-pointer">
-                        <i data-lucide="lightbulb" class="w-3 h-3"></i>
-                        <span>Imagine. Prompt. Create.</span>
-                    </span>
-                    <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-500/50 transition-all duration-300 cursor-pointer">
-                        <i data-lucide="palette" class="w-3 h-3"></i>
-                        <span>Words into Visual Art</span>
-                    </span>
-                </div>
-
-                <p class="text-xs text-slate-500 dark:text-slate-500 max-w-md leading-relaxed pt-1">
-                    Thanks for visiting! Best of luck to all participants in transforming creative ideas into posters.
-                </p>
+            <div class="phase-container">
+              <div class="phase-item">
+                <span class="phase-pill">WRITTEN — 5 MIN</span>
+                <p class="rule-desc">Write your detailed image prompt on paper based on the provided theme.</p>
+              </div>
+              <div class="phase-item">
+                <span class="phase-pill">TYPING &amp; RENDERING — 5 MIN</span>
+                <p class="rule-desc">Input your written prompt into the designated AI poster generator to render your entry.</p>
+              </div>
             </div>
 
-            <!-- Venue Card -->
-            <div class="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800/80 text-xs text-slate-700 dark:text-slate-300 space-y-1.5 max-w-md w-full transition-all duration-300 hover:border-brand-500/40 shadow-lg">
-                <div class="flex items-center space-x-2 font-bold text-slate-900 dark:text-slate-100">
-                    <i data-lucide="map-pin" class="w-4 h-4 text-brand-600 dark:text-brand-400 flex-shrink-0"></i>
-                    <span>Venue Location</span>
-                </div>
-                <p class="pl-6 text-slate-600 dark:text-slate-400 leading-relaxed">
-                    <strong>S.E.S. Polytechnic, Solapur</strong><br>
-                    46B, Solapur Bypass Rd, Samrat chowk, Budhavar Peth, Solapur, Maharashtra 413002
-                </p>
+            <div class="qualify-note">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>Qualifying: top-scoring entries advance based on visual appeal, theme alignment and composition.</span>
+            </div>
+          </div>
+
+          <div class="neo-card bg-burgundy reveal reveal-delay-2">
+            <div class="round-header">
+              <span class="round-num dark-num">02</span>
+              <span class="stage-tag stage-tag-burgundy">STAGE 2</span>
+            </div>
+            <h4 class="round-title">Final Advanced Challenge</h4>
+            
+            <div class="phase-container">
+              <div class="phase-item">
+                <span class="phase-pill phase-pill-light">WRITTEN REFINEMENT — 5 MIN</span>
+                <p class="rule-desc text-light">Plan a multi-concept prompt scenario on paper.</p>
+              </div>
+              <div class="phase-item">
+                <span class="phase-pill phase-pill-light">TYPING &amp; RENDERING — 5 MIN</span>
+                <p class="rule-desc text-light">Generate your final entry in the rendering engine.</p>
+              </div>
             </div>
 
+            <div class="qualify-note qualify-note-light">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>For selected participants only.</span>
+            </div>
+          </div>
         </div>
-        <div class="border-t border-slate-200 dark:border-slate-900 py-4 text-center text-xs text-slate-500">
-            © 2026 S.E.S. Polytechnic, Solapur. All rights reserved.
+      </div>
+    </section>
+
+    <!-- Judging Criteria Section -->
+    <section id="judging" class="section bg-navy">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="section-label label label-pink">03 — EVALUATION</h2>
+          <h3 class="section-heading text-ivory">Submission &amp; Judging Criteria</h3>
         </div>
-    </footer>
+        <div class="judge-grid">
+          <div class="neo-card bg-cream text-ink reveal reveal-delay-1">
+            <div class="judge-num mono">01</div>
+            <h4 class="judge-title">Relevance to Theme</h4>
+            <p class="rule-desc">How accurately the generated poster reflects the given competition topic.</p>
+          </div>
+          <div class="neo-card bg-cream text-ink reveal reveal-delay-2">
+            <div class="judge-num mono">02</div>
+            <h4 class="judge-title">Creativity &amp; Originality</h4>
+            <p class="rule-desc">Unique artistic direction, creative prompt styling, and original concept execution.</p>
+          </div>
+          <div class="neo-card bg-cream text-ink reveal reveal-delay-3">
+            <div class="judge-num mono">03</div>
+            <h4 class="judge-title">Visual Quality &amp; Composition</h4>
+            <p class="rule-desc">Balance of visual elements, color harmony, text legibility, and rendering precision.</p>
+          </div>
+          <div class="neo-card bg-cream text-ink reveal reveal-delay-4">
+            <div class="judge-num mono">04</div>
+            <h4 class="judge-title">Prompt Efficiency</h4>
+            <p class="rule-desc">How effectively the written text guides the AI engine without parameter clutter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Application Script -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+    <!-- Recognition & Venue Section -->
+    <section id="awards" class="section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="section-label label">04 — RECOGNITION</h2>
+          <h3 class="section-heading">Prize Distribution &amp; Venue</h3>
+        </div>
+        <div class="award-grid">
+          <div class="neo-card award-card reveal reveal-delay-1">
+            <div class="award-tier">
+              <span class="label text-stone">WINNER</span>
+              <span class="trophy-badge">🏆</span>
+            </div>
+            <div class="award-amount"> Cash Prize</div>
+            <div class="award-extra">+ Trophy</div>
+          </div>
 
-        // Theme Switcher (Toggles 'dark' class on <html> element)
-        const themeToggleBtn = document.getElementById('themeToggle');
-        themeToggleBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-        });
+          <div class="neo-card award-card reveal reveal-delay-2">
+            <div class="award-tier">
+              <span class="label text-stone">RUNNER UP</span>
+              <span class="trophy-badge">🥈</span>
+            </div>
+            <div class="award-amount">Cash Prize</div>
+            <div class="award-extra">+ Trophy</div>
+          </div>
 
-        // Active Navigation Highlight
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function () {
-                navLinks.forEach(l => {
-                    l.classList.remove('active', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'text-white', 'shadow-lg');
-                    l.classList.add('text-slate-600', 'dark:text-slate-400');
-                });
-                this.classList.add('active', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'text-white', 'shadow-lg');
-                this.classList.remove('text-slate-600', 'dark:text-slate-400');
-            });
-        });
-    </script>
+          <div class="neo-card award-card reveal reveal-delay-3">
+            <div class="award-tier">
+              <span class="label text-stone">ALL PARTICIPANTS</span>
+              <span class="trophy-badge">📜</span>
+            </div>
+            <div class="award-cert-title">Official Participation Certificate</div>
+          </div>
+        </div>
+
+        <!-- Venue Card -->
+        <div class="neo-card bg-ink reveal venue-card">
+          <div class="venue-box">
+            <div class="venue-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div class="venue-content">
+              <div class="label text-gold">VENUE</div>
+              <div class="venue-name">S.E.S. Polytechnic, Solapur</div>
+              <div class="venue-address">46B, Solapur Bypass Rd, Samrat Chowk, Budhavar Peth, Solapur, Maharashtra 413002</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Event Highlight Video Section -->
+  <section class="video-section">
+    <video class="video-fullwidth" autoplay muted loop playsinline controls>
+      <source src="https://upcdn.io/W23MTjS/raw/VID-20260927-WA0000.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <footer class="bg-ink">
+    <div class="container footer-container">
+      <h2 class="footer-title">PROMPT 2 POSTER</h2>
+      <p class="mono label footer-subtitle">SES POLYTECHNIC, SOLAPUR</p>
+      <p class="footer-tagline">"Think it. Prompt it. Design it."</p>
+      <div class="footer-badges">
+        <span>Imagine. Prompt. Create.</span>
+        <span>Words into Visual Art</span>
+      </div>
+      <p class="mono footer-copyright">© 2026 PROMPT 2 POSTER Event.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+  </button>
+
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Intersection Observer for scroll animations
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealEls.forEach((el) => io.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('visible'));
+  }
+
+  // Mobile navigation drawer controls
+  const toggle = document.getElementById('navToggle');
+  const mobile = document.getElementById('navMobile');
+
+  if (toggle && mobile) {
+    toggle.addEventListener('click', () => {
+      mobile.classList.toggle('open');
+    });
+
+    mobile.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobile.classList.remove('open');
+      });
+    });
+  }
+
+  // Active section tracking in navbar
+  const sectionIds = ['general', 'rounds', 'judging', 'awards'];
+  const navLinks = document.querySelectorAll('[data-nav]');
+
+  if ('IntersectionObserver' in window && navLinks.length) {
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            const isMatch = link.getAttribute('href') === '#' + entry.target.id;
+            link.classList.toggle('active', isMatch);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) navObserver.observe(el);
+    });
+  }
+
+  // Back to top floating button
+  const backBtn = document.getElementById('backToTop');
+  if (backBtn) {
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+});
+  </script>
 </body>
 </html>
