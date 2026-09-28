@@ -9,6 +9,7 @@ An interactive, dark-mode enabled web portal and rulebook system built for the P
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-F56565?style=for-the-badge&logo=sparkles&logoColor=white)
 
+
 - **🌐 HTML5**: Structure and semantic layout of the rulebook portal. 
 - **🎨 Tailwind CSS**: Utility-first CSS styling via CDN with dynamic dark mode and modern animations.
 - **⚡ JavaScript (ES6)**: Modern client-side logic handling theme toggling, active section navigation, and the rulebook assistant chatbot.
