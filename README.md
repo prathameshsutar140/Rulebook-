@@ -40,3 +40,4 @@ An interactive, dark-mode enabled web portal and rulebook system built for the P
 
 1. Clone or download this repository.
 2. Open `rulebook.html` directly in any standard browser. No node installation or local server required!
+
